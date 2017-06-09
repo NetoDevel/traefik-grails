@@ -1,0 +1,23 @@
+[web]
+address = ":8080"
+
+traefikLogsFile = "log/traefik.log"
+accessLogsFile = "log/access.log"
+
+defaultEntryPoints = ["http"]
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+
+[file]
+
+[backends]
+  [backends.grails]
+    [backends.grails.servers.app]
+      url = "http://127.0.0.1:9090"
+
+[frontends]
+  [frontends.helloworld]
+  entrypoints = ["http"]
+  backend = "grails"
+  passHostHeader = true
